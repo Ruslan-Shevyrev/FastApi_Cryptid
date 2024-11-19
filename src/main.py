@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-from web import explorer, creature
+from web import explorer, creature, auth
 
 app = FastAPI()
 
 app.include_router(explorer.router)
 app.include_router(creature.router)
-
+app.include_router(auth.router)
 
 @app.get('/')
 def top():
