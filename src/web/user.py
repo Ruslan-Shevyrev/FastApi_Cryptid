@@ -1,24 +1,24 @@
 from fastapi import APIRouter, HTTPException
-from src.model.Creature import Creature, CreatureNoId
-import src.service.creature as service
+from src.model.User import User, UserNoId
+import src.service.user as service
 from sqlite3 import IntegrityError
 
-router = APIRouter(prefix="/creature")
+router = APIRouter(prefix="/user")
 
 
 @router.get("")
 @router.get("/")
-def get_all() -> list[Creature]:
+def get_all() -> list[User]:
     return service.get_all()
 
 
 @router.get("/{id}")
-def get(id) -> Creature | None:
+def get(id) -> User | None:
     return service.get(int(id))
 
 
 @router.post("/")
-def create(creature: CreatureNoId) -> int:
+def create(creature: UserNoId) -> int:
     try:
         res = service.create(creature)
     except IntegrityError:
@@ -27,7 +27,7 @@ def create(creature: CreatureNoId) -> int:
 
 
 @router.put("/")
-def modify(creature: Creature) -> int:
+def modify(creature: User) -> int:
     return service.modify(creature)
 
 

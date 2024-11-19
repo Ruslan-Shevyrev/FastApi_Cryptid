@@ -26,9 +26,21 @@ def init_explorer():
     curs.close()
 
 
+def init_user():
+    conn = connect('cryptid.db')
+    curs = conn.cursor()
+    curs.execute('create table user('
+                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                 'name text unique not null, '
+                 'password text not null)')
+    conn.commit()
+    curs.close()
+
+
 def init():
     init_creature()
     init_explorer()
+    init_user()
 
 
 if __name__ == '__main__':
