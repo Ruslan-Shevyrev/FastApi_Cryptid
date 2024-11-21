@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
 from web import explorer, creature, auth, user, files
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -20,6 +20,11 @@ app.mount("/static", StaticFiles(directory='static', html=True), name="free")
 @app.get('/')
 def top():
     return "top here"
+
+
+@app.post('/who')
+def greet(name: str = Form()):
+    return f'Hello {name}'
 
 
 if __name__ == '__main__':
