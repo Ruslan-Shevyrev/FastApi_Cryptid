@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        {% for explorer in explorers: %}
+        <tr>
+            <td>{{ explorer.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

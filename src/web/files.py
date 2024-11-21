@@ -22,7 +22,7 @@ def download_small(filename: str):
 
 
 @router.get("/download_big/{filename}")
-def download_big(filename: str):
+async def download_big(filename: str):
     response = StreamingResponse(content=files.download_big(filename),
                                  status_code=200)
     return response

@@ -1,8 +1,12 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Request
 from src.model.Explorer import Explorer, ExplorerNoId
 import src.service.explorer as service
+from fastapi.templating import Jinja2Templates
 
 router = APIRouter(prefix="/explorer")
+
+
+template_obj = Jinja2Templates(directory='templates', )
 
 
 @router.get("")
@@ -11,7 +15,7 @@ def get_all() -> list[Explorer]:
     return service.get_all()
 
 
-@router.get("/{id}")
+@router.get("/get_one/{id}")
 def get(id) -> Explorer | None:
     return service.get(int(id))
 
@@ -29,3 +33,12 @@ def modify(explorer: Explorer) -> int:
 @router.delete("/{id}")
 def delete(id: int) -> bool:
     return service.delete(int(id))
+
+
+@router.get("/list")
+def get_list(request: Request):
+    explorers = service.get_all()
+    return template_obj.TemplateResponse("explorer_list.html",
+                                         {"request": request,
+                                          "explorers": explorers})
+

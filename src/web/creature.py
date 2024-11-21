@@ -12,7 +12,7 @@ def get_all() -> list[Creature]:
     return service.get_all()
 
 
-@router.get("/{id}")
+@router.get("/get_one/{id}")
 def get(id) -> Creature | None:
     return service.get(int(id))
 

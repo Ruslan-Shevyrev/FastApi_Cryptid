@@ -1,4 +1,4 @@
-from src.model.Explorer import Explorer
+from src.model.Explorer import Explorer, ExplorerNoId
 import src.data.explorer as data
 
 
@@ -10,7 +10,7 @@ def get(id: int) -> Explorer | None:
     return data.get(id)
 
 
-def create(explorer: Explorer) -> int:
+def create(explorer: ExplorerNoId) -> int:
     return data.create(explorer)
 
 
