@@ -1,7 +1,7 @@
 from sqlite3 import connect
 
-query = ('select id '
-         'from user')
+query = ('select name '
+         'from creature')
 conn = connect('../../../src/data/cryptid.db')
 curs = conn.cursor()
 curs.execute(query)
